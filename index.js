@@ -1,12 +1,16 @@
+
 import express from 'express';
 import mongoose from 'mongoose';
+import serverless from 'serverless-http';
 import Contact from './models/contact.model.js';
 
 const app = express();
 
-// Database Connection
-mongoose.connect('mongodb://127.0.0.1:27017/contacts-crud')
-  .then(() => console.log("Database is connected"));
+// Database Connection (use environment variable in deployment)
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/contacts-crud';
+mongoose.connect(MONGODB_URI)
+  .then(() => console.log('Database is connected'))
+  .catch(err => console.error('DB connection error:', err));
 
 // Middleware
 app.set('view engine', 'ejs');
@@ -31,7 +35,7 @@ app.post('/add-contact', async (req, res) => {
 });
 
 app.get('/update-contact/:id', async (req, res) => {
-  const contact = await Contact.findById(req.params.id, req.body);
+  const contact = await Contact.findById(req.params.id);
   res.render('update-contact', { contact });
 });
 
@@ -40,13 +44,18 @@ app.post('/update-contact/:id', async (req, res) => {
   res.redirect('/');
 });
 
-
 app.get('/delete-contact/:id', async (req, res) => {
-  await Contact.findByIdAndDelete(req.params.id, req.body);
+  await Contact.findByIdAndDelete(req.params.id);
   res.redirect('/');
 });
 
-//Working Port 
-app.listen(3000, () => {
-  console.log('Server started on port 3000');
-});
+// Local dev: start server when not in production (serverless platforms will not use listen)
+if (process.env.NODE_ENV !== 'production') {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+  });
+}
+
+// Export serverless handler for Vercel / other serverless platforms
+export default serverless(app);
