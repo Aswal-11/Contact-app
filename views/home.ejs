@@ -1,0 +1,51 @@
+<%- include('partials/header.ejs') %>
+
+    <div class="pt-10 flex item-center gap-2 justify-center w-full">
+        <div class="w-2/3 flex flex-col justify-center item-center gap-2">
+            <div class="text-end">
+                <a class="border border-red-400 px-3 hover:bg-gray-100 rounded-lg" href="/add-contact">Add</a>
+            </div>
+            <table class="border border-gray-300 text-sm text-left">
+                <thead class="bg-gray-100 text-gray-700 uppercase">
+                    <tr>
+                        <th class="px-4 py-2 border">ID</th>
+                        <th class="px-4 py-2 border">First Name</th>
+                        <th class="px-4 py-2 border">Last Name</th>
+                        <th class="px-4 py-2 border">Phone</th>
+                        <th class="px-4 py-2 border">Address</th>
+                        <th class="px-4 py-2 border">Update</th>
+                        <th class="px-4 py-2 border">Delete</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% contacts.forEach((contact,index)=> { %>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-2 border">
+                                <%= index +1  %>
+                            </td>
+                            <td class="px-4 py-2 border">
+                                <%= contact.first_name %>
+                            </td>
+                            <td class="px-4 py-2 border">
+                                <%= contact.last_name %>
+                            </td>
+                            <td class="px-4 py-2 border">
+                                <%= contact.phone %>
+                            </td>
+                            <td class="px-4 py-2 border">
+                                <%= contact.address %>
+                            </td>
+                            <td class="px-4 py-2 border">
+                                <a href="/update-contact/<%= contact.id %>">Update</a>
+                            </td>
+                            <td class="px-4 py-2 border">
+                                <a href="/delete-contact/<%= contact.id %>">Delete</a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<%- include('partials/footer.ejs') %>
