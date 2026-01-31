@@ -3,7 +3,7 @@
     <div class="pt-10 flex item-center gap-2 justify-center w-full">
         <div class="w-2/3 flex flex-col justify-center item-center gap-2">
             <div class="text-end">
-                <a class="border border-red-400 px-3 hover:bg-gray-100 rounded-lg" href="/add-contact">Add</a>
+                <a class="border border-red-400 px-3 hover:bg-gray-100 rounded-lg" href="/add-contact-page">Add</a>
             </div>
             <table class="border border-gray-300 text-sm text-left">
                 <thead class="bg-gray-100 text-gray-700 uppercase">
@@ -37,7 +37,7 @@
                                 <%= contact.address %>
                             </td>
                             <td class="px-4 py-2 border">
-                                <a href="/update-contact/<%= contact.id %>">Update</a>
+                                <a href="/update-contact-page/<%= contact.id %>">Update</a>
                             </td>
                             <td class="px-4 py-2 border">
                                 <a href="/delete-contact/<%= contact.id %>">Delete</a>
