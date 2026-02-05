@@ -1,11 +1,17 @@
 import express from 'express';
-import { getContacts, showContact, addContact, updateContactPage, updateContact, deleteContact } from '../controller/contacts.controller.js';
+import { showContacts, 
+         addContactPage,
+         addContact, 
+         updateContactPage, 
+         updateContact, 
+         deleteContact,
+} from '../controller/contacts.controller.js';
 
 const router = express.Router();
 
 //  Page
-router.get('/', getContacts);
-router.get('/add-contact-page', showContact);
+router.get('/', showContacts);
+router.get('/add-contact-page', addContactPage);
 router.post('/add-contact', addContact);
 router.get('/update-contact-page/:id', updateContactPage);
 router.post('/update-contact/:id', updateContact );

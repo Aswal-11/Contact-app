@@ -1,12 +1,12 @@
 import Contact from "../models/contact.model.js";
 import mongoose from "mongoose";
 
-export const getContacts = async (req, res) => {
+export const showContacts = async (req, res) => {
   const contacts = await Contact.find();
   res.render('home', { contacts });
 }
 
-export const showContact = async (req, res) => {
+export const addContactPage = async (req, res) => {
   res.render('add-contacts');
 }
 
