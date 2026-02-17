@@ -9,7 +9,7 @@ import { showContacts,
 
 const router = express.Router();
 
-//  Page
+//  Route Contacts
 router.get('/', showContacts);
 router.get('/add-contact-page', addContactPage);
 router.post('/add-contact', addContact);

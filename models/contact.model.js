@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-
 // Pagination 
 import mongoosePaginate from 'mongoose-paginate-v2';
 
